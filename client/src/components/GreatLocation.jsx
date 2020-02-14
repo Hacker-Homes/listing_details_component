@@ -11,5 +11,5 @@ const GreatLocation = () => {
             </div>
         </div>
     );
-}
+};
 export default GreatLocation;

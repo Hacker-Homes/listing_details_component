@@ -101,7 +101,4 @@ db.insertMany(dbData, function(error, docs) {
     } else {
         console.log('Seeding Success!');
     }
-})
-
-
-
+});
