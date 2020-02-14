@@ -11,6 +11,6 @@ const SparkingClean = () => {
             </div>
         </div>
     );
-}
+};
 
 export default SparkingClean;

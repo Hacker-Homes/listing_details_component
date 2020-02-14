@@ -11,6 +11,6 @@ const GreatCheckin = () => {
             </div>
         </div>
     );
-}
+};
 
 export default GreatCheckin;

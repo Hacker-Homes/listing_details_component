@@ -11,6 +11,6 @@ const Superhost = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Superhost;

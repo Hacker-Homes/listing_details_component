@@ -11,6 +11,6 @@ const Selfcheckin = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Selfcheckin;
