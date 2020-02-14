@@ -45,7 +45,6 @@ function generateListing() {
   const bedrooms = numberOfBedrooms();
   const city = faker.address.city();
   const listing = {
-    id,
     city,
     title: `${titleRandomArray} ${city}`,
     hostImage: faker.image.avatar(),
