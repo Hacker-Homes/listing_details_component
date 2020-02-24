@@ -1,3 +1,6 @@
 node_modules
 data.csv
-* bundle.js
+**/client/dist/bundle.js
+*.log
+report.**.json
+key.js

@@ -7,7 +7,12 @@
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/index.js",
     "test": "jest",
-    "seed": "node database/mockData.js"
+    "data": "node --max-old-space-size=16384 database/dataGenCSV.js",
+    "seed": "arangoimport --file 'data.csv' --type csv --create-database --server.database 'dbmsbnb' --create-collection --collection 'dbmsbnb' --overwrite 'true' --translate 'id=_key' --progress",
+    "stress1": "k6 run --vus 1 --duration 60s script.js",
+    "stress10": "k6 run --vus 10 --duration 60s script.js",
+    "stress100": "k6 run --vus 100 --duration 60s script.js",
+    "stress1k": "k6 run --vus 1000 --duration 60s script.js"
   },
   "repository": {
     "type": "git",
@@ -34,9 +39,9 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-mocha-no-only": "^1.1.0",
     "eslint-plugin-react": "^7.13.0",
     "jest": "^24.8.0",
-    "mongoose": "^5.8.11",
     "style-loader": "^0.23.1",
     "superagent": "^5.0.5",
     "supertest": "^4.0.2",
@@ -44,6 +49,7 @@
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
+    "arangojs": "^6.13.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "csv-write-stream": "^2.0.0",
@@ -51,6 +57,7 @@
     "faker": "^4.1.0",
     "install": "^0.12.2",
     "jquery": "^3.4.1",
+    "newrelic": "^6.4.1",
     "nodemon": "^1.19.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
