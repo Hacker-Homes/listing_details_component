@@ -1,27 +1,24 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/airbnbInfo', { useNewUrlParser: true });
+const { Database, aql } = require('arangojs');
 
-let dbSchema = mongoose.Schema({
-    id: Number,
-    city: String,
-    title: String,
-    hostImage: String,
-    roomInfo: String,
-    numberOfGuests: Number,
-    numberOfBedrooms: Number,
-    numberOfBeds: Number,
-    numberOfBaths: Number,
-    isSuperhost: Boolean,
-    isGreatLocation: Boolean,
-    isSparklingClean: Boolean,
-    isGreatCheckIn: Boolean,
-    isSelfCheckIn: Boolean,
-    description: String,
-    amenities: Object,
-    sleepingArrangements: Object,
-});
+const db = new Database();
 
-let db = mongoose.model('Listing', dbSchema);
+const findListing = (req, res) => {
+  const listingId = req.params.id;
+  db.useDatabase('dbmsbnb');
+  db.useBasicAuth('root', '');
+  db.query(aql`
+    FOR listing IN dbmsbnb FILTER listing._key == ${listingId} RETURN listing
+    `)
+    .then(cursor => (
+      cursor.next()
+        .then((result) => {
+          res.send(result);
+        })
+    ))
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 
-module.exports = db;
+module.exports = findListing;

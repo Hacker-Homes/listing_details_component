@@ -8,6 +8,8 @@ const titleRandom = ['Perfectly located', 'Light & spacious garden flat', 'Priva
 
 const roomInfoRandom = ['Private room', 'Entire guesthouse', 'Entire guestsuite', 'Entire House'];
 
+let id = 1;
+
 function generateListing() {
   const titleRandomArray = titleRandom[Math.floor(Math.random() * titleRandom.length)];
   const roomInfoRandomArray = roomInfoRandom[Math.floor(Math.random() * roomInfoRandom.length)];
@@ -43,6 +45,7 @@ function generateListing() {
   const bedrooms = numberOfBedrooms();
   const city = faker.address.city();
   const listing = {
+    id,
     city,
     title: `${titleRandomArray} ${city}`,
     hostImage: faker.image.avatar(),
@@ -57,14 +60,6 @@ function generateListing() {
     isGreatCheckIn: faker.random.boolean(),
     isSelfCheckIn: faker.random.boolean(),
     description: faker.lorem.paragraph() + faker.lorem.paragraph(),
-    hasWiFi: true,
-    hasEssentials: true,
-    hasCable: true,
-    hasLaptopSpace: true,
-    hasHeating: true,
-    hasKitchen: true,
-    hasPillowsBlankets: true,
-    bedroom: bedrooms,
   };
   return listing;
 }
@@ -73,6 +68,7 @@ function generateListings() {
   writer.pipe(fs.createWriteStream('data.csv'));
   for (let i = 1; i <= 10000000; i += 1) {
     const listing = generateListing();
+    id += 1;
     writer.write(listing);
     console.log('Record:', i);
   }
@@ -81,3 +77,36 @@ function generateListings() {
 }
 
 generateListings();
+
+/* ============================================
+=                 Data Schema                 =
+===============================================
+
+
+create table test_seed(
+id integer,
+city varchar(255),
+title varchar(255),
+hostImage varchar(255),
+roomInfo varchar(255),
+numberOfGuests integer,
+numberOfBedrooms integer,
+numberOfBeds integer,
+numberOfBaths integer,
+isSuperHost boolean,
+isGreatLocation boolean,
+isSparklingClean boolean,
+isGreatCheckIn boolean,
+isSelfCheckIn boolean,
+description text,
+hasWifi boolean,
+hasEssentials boolean,
+hasCable boolean,
+hasLaptopSpace boolean,
+hasHeating boolean,
+hasKitchen boolean,
+hasPillowsBlankets boolean,
+bedroom integer);
+
+
+============================================ */

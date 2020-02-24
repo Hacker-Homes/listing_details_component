@@ -22,6 +22,7 @@ class App extends React.Component {
         $.get({
             url: `/listings/${window.location.href.match(/id\s*=\s*(.*)/)[1]}`,
             success: (data) => {
+                console.log(data);
                 this.setState({listings: data});
             }
         });
