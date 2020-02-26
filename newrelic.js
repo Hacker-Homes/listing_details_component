@@ -1,4 +1,4 @@
-const KEY = require('./key');
+const { KEY } = require('./key');
 
 'use strict';
 

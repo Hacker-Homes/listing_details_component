@@ -16,7 +16,7 @@ app.use(express.static(PUBLIC));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/listings/:id', (req, res) => {
+app.get('/api/listing/:id', (req, res) => {
   findListing(req, res);
 });
 
