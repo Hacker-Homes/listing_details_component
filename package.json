@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "react-dev": "webpack -d --watch",
+    "react-dev": "webpack -d -w",
     "start": "nodemon server/index.js",
     "test": "jest",
+    "build": "webpack --config webpack.prod.js",
+    "buildev": "webpack --config webpack.dev.js",
     "data": "node --max-old-space-size=16384 database/dataGenCSV.js",
     "seed": "arangoimport --file 'data.csv' --type csv --create-database --server.database 'dbmsbnb' --create-collection --collection 'dbmsbnb' --overwrite 'true' --translate 'id=_key' --progress",
     "stress1": "k6 run --vus 1 --duration 60s script.js",
@@ -33,6 +35,7 @@
     "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^2.1.1",
+    "csv-write-stream": "^2.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
     "eslint": "^5.16.0",
@@ -41,28 +44,25 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-mocha-no-only": "^1.1.0",
     "eslint-plugin-react": "^7.13.0",
+    "faker": "^4.1.0",
     "jest": "^24.8.0",
-    "style-loader": "^0.23.1",
+    "nodemon": "^1.19.4",
     "superagent": "^5.0.5",
     "supertest": "^4.0.2",
     "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^3.3.2",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "arangojs": "^6.13.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "csv-write-stream": "^2.0.0",
     "express": "^4.16.4",
-    "faker": "^4.1.0",
-    "install": "^0.12.2",
     "jquery": "^3.4.1",
     "newrelic": "^6.4.1",
-    "nodemon": "^1.19.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-modal": "^3.8.1",
-    "request": "^2.88.0",
-    "styled-components": "^4.2.0"
+    "style-loader": "^0.23.1"
   }
 }

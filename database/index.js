@@ -2,7 +2,7 @@ const { Database, aql } = require('arangojs');
 const { USER, UPASS } = require('../key.js');
 
 const db = new Database({
-  url: 'http://34.217.148.234:8529',
+  url: 'http://34.214.1.49:8529',
 });
 
 const findListing = (req, res) => {
